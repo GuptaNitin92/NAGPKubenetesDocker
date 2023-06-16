@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "FVHvQsvZ5yTHJYq/5pQiMnCB/VjWdNe1Yo8LzsAMFx8=",
+  "Source": "NAGP2023KubernetesDocker",
+  "BasePath": "_content/NAGP2023KubernetesDocker",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

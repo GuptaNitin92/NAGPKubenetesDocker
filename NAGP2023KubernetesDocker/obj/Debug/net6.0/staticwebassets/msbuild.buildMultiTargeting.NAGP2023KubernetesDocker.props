@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NAGP2023KubernetesDocker.props" />
+</Project>
