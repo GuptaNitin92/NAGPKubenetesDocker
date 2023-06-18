@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-credentials
+data:
+  MYSQL_USER: "testUser"
+  MYSQL_DATABASE: "nagp"

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serviceapi-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: serviceapi-pod
+  template:
+    metadata:
+      labels:
+        app: serviceapi-pod
+    spec:
+      containers:
+      - name: serviceapi-container
+        image: guptanitin92/nagp2023kubernetesdocker_api
+        env:
+          - name: DBHOST
+            value: database-tier-service
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                name: database-credentials
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: database-secret
+                key: MYSQL_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: database-credentials
+                key: MYSQL_DATABASE
+        ports:
+        - containerPort: 80

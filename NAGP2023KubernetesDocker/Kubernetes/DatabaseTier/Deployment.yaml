@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-deployment
+spec:
+  selector:
+    matchLabels:
+      app: database-tier
+  strategy:
+    type : Recreate
+  template:
+    metadata:
+      labels:
+        app: database-tier
+    spec:
+      containers:
+      - name: database-tier
+        image: guptanitin92/mysql:8.0.22
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: database-secret
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                name: database-credentials
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: database-secret
+                key: MYSQL_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: database-credentials
+                key: MYSQL_DATABASE             
+        args: ["--default-authentication-plugin=mysql_native_password"]
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+          - name: database-persistent-storage
+            mountPath: /var/lib/database
+          - name: database-initdb
+            mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: database-persistent-storage
+        persistentVolumeClaim:
+          claimName: database-pvc
+      - name: database-initdb
+        configMap:
+          name: initdb
