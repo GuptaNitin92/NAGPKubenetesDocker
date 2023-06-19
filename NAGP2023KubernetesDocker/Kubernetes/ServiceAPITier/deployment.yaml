@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: serviceapi-container
-        image: guptanitin92/nagp2023kubernetesdocker_api
+        image: guptanitin92/nagp2023kubernetesdocker_api_1
         env:
           - name: DBHOST
             value: database-tier-service
@@ -33,5 +33,9 @@ spec:
               configMapKeyRef:
                 name: database-credentials
                 key: MYSQL_DATABASE
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: ASPNETCORE_URLS        
+            value: http://+:3000
         ports:
-        - containerPort: 80
+        - containerPort: 3000

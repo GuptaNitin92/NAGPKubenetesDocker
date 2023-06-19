@@ -44,12 +44,7 @@ spec:
           - name: database-persistent-storage
             mountPath: "/var/lib/mysql"
             subPath: mysql
-          - name: database-initdb
-            mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: database-persistent-storage
         persistentVolumeClaim:
           claimName: database-pvc
-      - name: database-initdb
-        configMap:
-          name: initdb
