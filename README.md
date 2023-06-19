@@ -19,3 +19,7 @@
 ### Deployment referencing PVC & Init DB Config Map for first time deployment: NAGP2023KubernetesDocker/Kubernetes/DatabaseTier/Deployment.yaml
 ### Deployment referencing PVC & using data stored in persistent volume without using Init DB Config Map : NAGP2023KubernetesDocker/Kubernetes/DatabaseTier/DeploymentWithoutInitDB.yaml
 ### Service for Database deployment: NAGP2023KubernetesDocker/Kubernetes/DatabaseTier/service.yaml
+
+
+## DockerFile: NAGP2023KubernetesDocker/Dockerfile
+## Docker-Compose:NAGP2023KubernetesDocker/docker-compose.yml
